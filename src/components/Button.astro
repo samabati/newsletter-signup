@@ -1,0 +1,29 @@
+---
+interface Props {
+  class?: string;
+  text: string;
+}
+
+const { text, class: className = "" } = Astro.props;
+---
+
+<button
+  class=`flex align-c just-c border-r-8 w-100 bg-d-n color-w font-s-16 bold font-lh-150 ${className}`
+  >{text}</button
+>
+
+<style>
+  button {
+    padding-top: 18px;
+    padding-bottom: 14px;
+  }
+
+  button:focus,
+  button:hover {
+    background: var(
+      --Gradient-1,
+      linear-gradient(204deg, #ff6a3a 0%, #ff527b 100%)
+    );
+    box-shadow: 0px 16px 32px 0px rgba(255, 97, 85, 0.5);
+  }
+</style>

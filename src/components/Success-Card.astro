@@ -1,0 +1,71 @@
+---
+import Button from "./Button.astro";
+---
+
+<main
+  class="flex-d-c flex w-100 bg-w box-shadow border-r-36 p-t-48 p-l-64 p-r-64 p-b-64"
+>
+  <img src="/src/assets/images/icon-success.svg" alt="icon-success" />
+  <section>
+    <h1 class="color-d-n font-s-56 bold font-lh-100">
+      Thanks for subscribing!
+    </h1>
+    <p class="color-d-n font-s-16 font-lh-150 m-t-24">
+      A confirmation email has been sent to <strong id="email"></strong> Please open
+      it and click the button inside to confirm your subscription.
+    </p>
+  </section>
+  <div id="button">
+    <Button class="success-button" text="Dismiss message" />
+  </div>
+</main>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const email = urlParams.get("email");
+  const button = document.getElementById("button");
+
+  button?.addEventListener("click", () => {
+    window.location.href = "/";
+  });
+
+  if (email) {
+    (document.getElementById("email") as HTMLElement).textContent = email;
+  }
+</script>
+
+<style>
+  main {
+    max-width: 504px;
+    gap: 40px;
+    overflow: auto;
+  }
+  img {
+    height: 64px;
+    width: 64px;
+  }
+
+  /* Mobile*/
+
+  @media (max-width: 58rem) {
+    main {
+      height: 100vh;
+      width: 100%;
+      max-width: none;
+      border-radius: 0px;
+      padding: 149px 24px 40px 24px;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+  }
+</style>
+
+<style is:global>
+  @media (max-width: 58rem) {
+    .success-button {
+      margin-top: auto;
+    }
+  }
+</style>

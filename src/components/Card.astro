@@ -1,61 +1,92 @@
 ---
-interface Props {
-	title: string;
-	body: string;
-	href: string;
-}
-
-const { href, title, body } = Astro.props;
+import Form from "./Form.astro";
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
+<main
+  class="bg-w p-t-24 p-r-24 p-b-24 p-l-64 flex border-r-36 box-shadow w-100"
+>
+  <section class="w-100">
+    <h1 class="color-d-n font-s-56 bold font-lh-100">Stay updated!</h1>
+    <p class="m-t-24 color-d-n font-s-16 font-lh-150">
+      Join 60,000+ product managers receiving monthly updates on:
+    </p>
+    <ul class="m-t-24 flex flex-d-c gap-10">
+      <li class="flex align-c">
+        <img src="/src/assets/images/icon-list.svg" alt="" />
+        <p class="color-d-n font-s-16 font-lh-150">
+          Product discovery and building what matters
+        </p>
+      </li>
+      <li class="flex align-c">
+        <img src="/src/assets/images/icon-list.svg" alt="" />
+        <p class="color-d-n font-s-16 font-lh-150">
+          Measuring to ensure updates are a success
+        </p>
+      </li>
+      <li class="flex align-c">
+        <img src="/src/assets/images/icon-list.svg" alt="icon-list" />
+        <p class="color-d-n font-s-16 font-lh-150">And much more!</p>
+      </li>
+    </ul>
+    <Form />
+  </section>
+  <section class="w-100"></section>
+</main>
+
 <style>
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-	}
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
-	}
+  /* Desktop */
+  main {
+    max-width: 928px;
+    gap: 64px;
+  }
+
+  li {
+    gap: 16px;
+  }
+
+  section:nth-of-type(1) {
+    margin-top: 73px;
+  }
+
+  section:nth-of-type(2) {
+    background-image: url("/src/assets/images/illustration-sign-up-desktop.svg");
+  }
+
+  /* Mobile */
+
+  @media (max-width: 58rem) {
+    main {
+      outline: 2px solid red;
+      height: 100vh;
+      border-radius: 0px;
+      flex-direction: column;
+      padding-top: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-bottom: 40px;
+      gap: 40px;
+      overflow: auto;
+    }
+
+    section:nth-of-type(1) {
+      order: 2;
+      margin-top: 0px;
+      padding: 0px 24px 0px 24px;
+    }
+
+    section:nth-of-type(2) {
+      order: 1;
+      background-image: url("/src/assets/images/illustration-sign-up-mobile.svg");
+      background-size: cover; /* Ensures the image covers the entire element */
+      background-repeat: no-repeat; /* Prevents the image from repeating */
+      min-height: 33%;
+      max-height: 284px;
+      height: 284px;
+      border-radius: 0px 0px 16px 16px;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+  }
 </style>

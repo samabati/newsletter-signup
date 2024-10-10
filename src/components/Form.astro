@@ -1,0 +1,96 @@
+---
+import Button from "./Button.astro";
+---
+
+<form id="myForm">
+  <div class="flex align-c just-s-b">
+    <div class="label-container">
+      <h2 class="color-d-n font-s-12 bold font-lh-150">Email address</h2>
+    </div>
+    <div id="error-container" class="font-s-12 color-v bold font-lh-150"></div>
+  </div>
+  <div
+    id="email-container"
+    class="w-100 border-r-8 border-1-g-25 p-t-16 p-b-16 p-l-24 p-r-24"
+  >
+    <input
+      id="email"
+      placeholder="email@company.com"
+      type="email"
+      class="w-100 color-d-n font-s-16 font-lh-150"
+    />
+  </div>
+  <Button class="m-t-24" text="Subscribe to monthly newsletter" />
+</form>
+
+<script>
+  import { z } from "astro:content";
+
+  const form = document.getElementById("myForm");
+  const errorContainer = document.getElementById(
+    "error-container"
+  ) as HTMLInputElement;
+  const emailContainer = document.getElementById(
+    "email-container"
+  ) as HTMLInputElement;
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = (document.getElementById("email") as HTMLInputElement).value;
+
+    const emailSchema = z.string().email();
+
+    try {
+      emailSchema.parse(email);
+      resetError();
+
+      console.log("Email is valid", email);
+      window.location.href = `/success?email=${email}`;
+    } catch (e) {
+      console.log("Email is not valid", email);
+      showError();
+    }
+  });
+
+  const resetError = () => {
+    errorContainer.innerText = "";
+    emailContainer.className = emailContainer.className
+      .split(" ")
+      .filter((val) => val !== "error")
+      .join(" ");
+  };
+
+  const showError = () => {
+    errorContainer.innerText = "Valid email required";
+    emailContainer.className = emailContainer.className + " error";
+  };
+</script>
+
+<style>
+  form {
+    margin-top: 40px;
+  }
+  div {
+    margin-top: 8px;
+  }
+
+  .error {
+    border: 1px solid var(--Vermellion, #ff6155) !important;
+    background: rgba(255, 97, 85, 0.15) !important;
+  }
+
+  .error > input {
+    background: transparent;
+    color: var(--Vermellion, #ff6155) !important;
+  }
+
+  .error > input::placeholder {
+    color: var(--Vermellion, #ff6155) !important;
+  }
+
+  #email-container:focus-within,
+  #email-container:hover {
+    border: 1px solid var(--dark-navy);
+  }
+</style>
