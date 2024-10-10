@@ -1,11 +1,13 @@
 ---
 import Button from "./Button.astro";
+import iconSuccess from "../assets/images/icon-success.svg";
+import { Image } from "astro:assets";
 ---
 
 <main
   class="flex-d-c flex w-100 bg-w box-shadow border-r-36 p-t-48 p-l-64 p-r-64 p-b-64"
 >
-  <img src="/src/assets/images/icon-success.svg" alt="icon-success" />
+  <Image src={iconSuccess} alt="success-icon" />
   <section>
     <h1 class="color-d-n font-s-56 bold font-lh-100">
       Thanks for subscribing!
@@ -29,9 +31,8 @@ import Button from "./Button.astro";
     window.location.href = "/";
   });
 
-  if (email) {
-    (document.getElementById("email") as HTMLElement).textContent = email;
-  }
+  (document.getElementById("email") as HTMLElement).textContent =
+    email || "N/A";
 </script>
 
 <style>
@@ -39,10 +40,6 @@ import Button from "./Button.astro";
     max-width: 504px;
     gap: 40px;
     overflow: auto;
-  }
-  img {
-    height: 64px;
-    width: 64px;
   }
 
   /* Mobile*/

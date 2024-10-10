@@ -1,5 +1,7 @@
 ---
 import Form from "./Form.astro";
+import iconList from "../assets/images/icon-list.svg";
+import { Image } from "astro:assets";
 ---
 
 <main
@@ -12,19 +14,19 @@ import Form from "./Form.astro";
     </p>
     <ul class="m-t-24 flex flex-d-c gap-10">
       <li class="flex align-c">
-        <img src="/src/assets/images/icon-list.svg" alt="" />
+        <Image src={iconList} alt="icon-image" />
         <p class="color-d-n font-s-16 font-lh-150">
           Product discovery and building what matters
         </p>
       </li>
       <li class="flex align-c">
-        <img src="/src/assets/images/icon-list.svg" alt="" />
+        <Image src={iconList} alt="icon-image" />
         <p class="color-d-n font-s-16 font-lh-150">
           Measuring to ensure updates are a success
         </p>
       </li>
       <li class="flex align-c">
-        <img src="/src/assets/images/icon-list.svg" alt="icon-list" />
+        <Image src={iconList} alt="icon-image" />
         <p class="color-d-n font-s-16 font-lh-150">And much more!</p>
       </li>
     </ul>
